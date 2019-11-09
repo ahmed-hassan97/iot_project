@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> lap2 html</title>
+	<script src="dweet.io.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="lap2.css">
+</head>
+<body>
+<h1 class="h1"> click this button to change it color</h1>
+
+<input class="bt1" type="button" name="button one" value="button one " id="bt1" >
+<input class="bt1" type="button" name="button one" value="button two " id="bt2">
+
+<h1 class="h2"> Sliders to change the background color</h1>
+<div class="div1"><label class="range1" for="r1">red</label>
+<input id="red" type="range" name="slider" id="r1" min="0" max="255"
+ step="10"></div>
+
+<div class="div2"><label class="range2" for="r1">blue</label>
+<input id="blue" type="range" name="slider" id="r2" min="0" max="255"
+ step="10"></div>
+
+ <div class="div3"><label class="range3" for="r1">green</label>
+<input class="range3" id="green" type="range" name="slider" id="r3" min="0" max="255"
+ step="10"></div>
+
+
+<script type="text/javascript">
+	 var btn1 = document.getElementById("bt1");
+        
+        btn1.onclick = function () {
+        //     btn1.style.backgroundColor="#f27d42";   
+            var obj = {
+                color: document.getElementById("bt1").style.backgroundColor
+            }
+            dweetio.dweet_for("ahmedBtnChangeColor", obj, function (err, dweet){});
+        }
+        dweetio.listen_for("ahmedBtnChangeColor", function (dweet) {
+            console.log(dweet);
+            console.log(bt1.style.backgroundColor);
+            console.log("this is the dweet msg "+ dweet.content.color);
+	        if (dweet.content.color == "green"){
+                        console.log("from inside the if : this is the dweet msg "+ dweet.content.color);
+			btn1.style.backgroundColor ="red";
+
+			}else
+	            btn1.style.backgroundColor ="green";
+
+	        }
+
+        );
+
+        var btn2 = document.getElementById("bt2");
+         btn2.onclick = function () {
+        //     btn1.style.backgroundColor="#f27d42";   
+            var obj = {
+                color: document.getElementById("bt2").style.backgroundColor
+            }
+            dweetio.dweet_for("ahmedBtnChangeColor", obj, function (err, dweet){});
+        }
+        dweetio.listen_for("ahmedBtnChangeColor", function (dweet) {
+            console.log(dweet);
+            console.log(bt2.style.backgroundColor);
+            console.log("this is the dweet msg "+ dweet.content.color);
+	        if (dweet.content.color == "green"){
+                        console.log("from inside the if : this is the dweet msg "+ dweet.content.color);
+			btn2.style.backgroundColor ="red";
+
+			}else
+	            btn2.style.backgroundColor ="green";
+
+	        }
+
+        );
+
+       
+
+</script>
+</body>
+</html>
